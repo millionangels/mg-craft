@@ -1,0 +1,19 @@
+{#
+  # Entry template
+  # ---------------
+  #}
+  <!-- post -->
+  {% set tag = entry.tags.first() %}
+  {% set image = entry.featureImage.first() %}
+  <div class="grid postfeed">
+    <div class="grid__col--lg-4 grid__col--sm-12">
+      {% if image %}<a href="{{ entry.url }}"><img src="/assets/images/{{ image.filename }}"  style="width:100%;" alt="{{ image.title }}"></a>{% endif %}
+    </div>
+    <div class="grid__col--lg-8 grid__col--sm-12">
+      <div class="post__date">{{ entry.postDate|date("F d, Y") }} <span style="font-style: italic;">in</span> <a href="{{ url('tags') }}/{{tag.id}}" class="post__tag">{{ tag.title }}</a></div>
+      <h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
+      <p>{{ entry.summary }}</p>
+      <a href="{{ entry.url }}" class="post__readmore">keep reading</a>
+    </div>
+    <!-- end post -->
+  </div>

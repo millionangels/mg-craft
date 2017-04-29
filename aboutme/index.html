@@ -1,0 +1,52 @@
+{#
+ # Writing index template
+ # -------------------
+#}
+
+{% extends "_layout" %}
+{% set title = "About me" %}
+
+
+
+
+{% block content %}
+{% set entry = craft.entries.section('aboutme').first() %}
+
+<section id="aboutme">
+  <div class="centered-content">
+    <div class="grid">
+      <div class="grid__col--lg-4 grid__col--sm-12">
+        <h1>{{ entry.title }}</h1>
+          <p class="summary">{{ entry.summary }}</p>
+          {% set image = entry.featureImage.first() %}
+          {% if image %}<img src="/assets/images/{{ image.filename }}"  style="width:100%;" alt="{{ image.title }}">{% endif %}
+
+        <div>
+
+        </div>
+      </div>
+      <div class="grid__col--lg-8 grid__col--sm-12 borderleft">
+        <section><!-- about me-->
+          <div class="centered-content">
+
+            {% for block in entry.articleBody %}
+              {% if block.type == 'text' %}
+                <div class="{{ block.position }}">{{ block.text }}</div>
+              {% elseif block.type == 'pullQuote' %}
+                <blockquote>{{ block.pullQuote }}<br><span class="attribution">{{ block.attribution }}</blockquote>
+              {% elseif block.type == 'image' %}
+              {% set image = block.image.first() %}
+                    {% if image %}
+                        <img src="/assets/images/{{ image.filename }}" alt="{{ image.title }}">
+                    {% endif %}
+                <div class="caption">{{ block.caption }}</div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </section><!-- /post feed -->
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

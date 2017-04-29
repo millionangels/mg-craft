@@ -1,0 +1,32 @@
+{#
+ # Writing single entry template
+ # -------------------
+#}
+
+{% extends "_layout" %}
+
+{% block content %}
+<section id="singlepost">
+  <div class="centered-content">
+    <div class="grid">
+      <div class="post"><!-- post -->
+        <div class="grid__col--2">
+          <ul class="post__tags">
+            {% for tag in entry.tags %}
+              <li><a href="{{ entry.url }}" class="post__tag">{{ tag.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="grid__col--8">
+
+
+
+          <div>{{ entry.theQuote }}</div>
+          <h3>{{ entry.who }}</h3>
+          <h2>{{ entry.source }}</h2>
+        </div>
+      </div><!-- /post -->
+    </div>
+  </div>
+</section><!-- / -->
+{% endblock %}

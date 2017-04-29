@@ -1,0 +1,23 @@
+{#
+  # Entry template
+  # ---------------
+  #}
+  <!-- post -->
+  {% set tags = entry.wordtypes %}
+  {% set image = entry.featureImage.first() %}
+  {% set who = entry.who.first() %}
+  {% set source = entry.source.first() %}
+  <div class="grid">
+    <div class="grid__col--lg-10 grid__col--sm-12 word">
+      <h2>{{ entry.title }}</h2>
+      <div class="word__quote">{{ entry.theQuote }}</div>
+      <p class="word__who">{{ who.title }}</p>
+      <p class="word__source">{{ source.title }}</p>
+      <p class="word__tags">Filed under
+        {% for tag in tags %}
+        <a href="{{ url('side-projects') }}/{{tag.id}}" class="word__tag">{{ tag.title }}</a>
+        {% endfor %}
+      </p>
+    </div>
+    <!-- end post -->
+  </div>

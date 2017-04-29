@@ -1,0 +1,40 @@
+{#
+ # Tags index template
+ # -------------------
+#}
+
+{% set thistag = craft.tags.id(tag).first() %}
+
+{% set entries = craft.entries({
+    relatedTo: thistag.id ,
+}) %}
+
+{% extends "_layout" %}
+{% set title = "Tags" %}
+
+{% block content %}
+<!-- intro -->
+<section>
+  <div class="centered-content">
+    <div class="grid">
+      <div class="grid__col--lg-4 grid__col--sm-12">
+        <div><h2>Tagged with {{ thistag.title }}</h2></div>
+        <div>
+          {{ thistag.summary }}
+        </div>
+      </div>
+      <div class="grid__col--lg-8 grid__col--sm-12 borderleft">
+        <section id="postfeed"><!-- post feed-->
+          <div class="centered-content">
+            {# Query for the entries and return them #}
+            {% for entry in entries %}
+              {% embed "_entry.html" %}
+              {% endembed %}
+            {% endfor %}
+          </div>
+        </section><!-- /post feed -->
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

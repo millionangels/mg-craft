@@ -1,0 +1,39 @@
+{#
+  # Homepage template
+  # ---------------
+  #}
+
+  {% extends "_layout" %}
+  {% set title = "Home" %}
+
+  {% block content %}
+  <section>
+    <div class="centered-content">
+      <div class="grid">
+        <div class="grid__col--lg-4 grid__col--sm-12">
+          <div class="pullquote">{{ entry.title }}</div>
+          <div>{{ entry.summary }}
+          </div>
+          <div>
+            <h3 class="post__tags--heading">Browse by topic:</h3>
+            <ul class="post__tags">
+              {% for tags in craft.tags.group('writing') %}
+              <li class="post__tag"><a href="{{ url('tags') }}/{{tags.id}}">{{ tags.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="grid__col--lg-8 grid__col--sm-12 borderleft">
+          <section id="postfeed"><!-- post feed-->
+            <div class="centered-content">
+              {% for entry in craft.entries.section('writing').order('number desc').limit(5).find() %}
+                {% embed "_entry.html" %}
+                {% endembed %}
+              {% endfor %}
+            </div>
+          </section><!-- /post feed -->
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}

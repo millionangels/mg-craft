@@ -1,0 +1,42 @@
+{#
+ # Writing single entry template
+ # -------------------
+#}
+
+{% extends "_layout" %}
+{% set tag = entry.tags.first() %}
+{% block content %}
+<section id="singlepost">
+  <div class="centered-content">
+    <div class="grid">
+      <div class="post"><!-- post -->
+        <div class="grid__col--5">
+          <div class="post__date">{{ entry.postDate|date("F d, Y") }} <span style="font-style: italic;">in</span> <a href="{{ url('tags') }}/{{tag.id}}" class="post__tag">{{ tag.title }}</a></div>
+          <div class="post__tags"></div>
+          <h1>{{ entry.title }}</h1>
+          <p class="summary">{{ entry.summary }}</p>
+          {% set image = entry.featureImage.first() %}
+          {% if image %}<img src="/assets/images/{{ image.filename }}"  style="width:100%;" alt="{{ image.title }}">{% endif %}
+          <p class="pullquote">{{ entry.callOut }}<br><span class="attribution">{{ entry.callOutCaption }}</span></p>
+        </div>
+        <div class="grid__col--7 borderleft">
+          {% for block in entry.articleBody %}
+            {% if block.type == 'text' %}
+              <div class="{{ block.position }}">{{ block.text }}</div>
+            {% elseif block.type == 'pullQuote' %}
+              <blockquote>{{ block.pullQuote }}<br><span class="attribution">{{ block.attribution }}</blockquote>
+            {% elseif block.type == 'image' %}
+            {% set image = block.image.first() %}
+                  {% if image %}
+                      <img src="/assets/images/{{ image.filename }}" alt="{{ image.title }}">
+                  {% endif %}
+              <div class="caption">{{ block.caption }}</div>
+            {% endif %}
+          {% endfor %}
+          <div>{{ entry.body }}</div>
+        </div>
+      </div><!-- /post -->
+    </div>
+  </div>
+</section><!-- / -->
+{% endblock %}
