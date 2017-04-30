@@ -7,9 +7,8 @@
   {% set title = "Words in Situ" %}
   {% set parent_entry = craft.entries.section('sideProjects').first() %}
 
-  {% set thistag = craft.tags.id(tag).first() %}
-
-  {%if tag %}
+  {%if tag is defined %}
+    {% set thistag = craft.tags.id(tag).first() %}
     {% set entries = craft.entries.section('wordsInSitu').relatedTo(thistag.id).order('title') %}
   {% else %}
     {% set entries = craft.entries.section('wordsInSitu').order('title')  %}

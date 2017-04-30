@@ -13,7 +13,7 @@
     {% endif %}
   {% endif %}
 
-  {% if title == 'Words in Situ' %}
+  {% if title is defined and title == 'Words in Situ' %}
     {% set projectname = 'Words <span class="small">in</span> Situ' %}
     {% set tagline = '(another) side project ' %}
   {% else %}
@@ -31,7 +31,7 @@
                   {% set menu = craft.entries.section('menu').order('displayOrder') %}
                   {% nav link in menu %}
                           {% if link.relatedentry|length %}
-                                  <li {% if link.title == title %}class="open"{% endif %}><a href="{{ link.relatedentry[0].url }}" >
+                                  <li {% if title is defined and link.title == title %}class="open"{% endif %}><a href="{{ link.relatedentry[0].url }}" >
                           {% else %}
                                   <li><a href="{{ link.customurl }}">
                           {% endif %}
@@ -71,7 +71,7 @@
                   {% set menu = craft.entries.section('menu').order('displayOrder') %}
                   {% nav link in menu %}
                           {% if link.relatedentry|length %}
-                                  <li {% if link.title == title %}class="open"{% endif %}><a href="{{ link.relatedentry[0].url }}" >
+                                  <li {% if title is defined and link.title == title %}class="open"{% endif %}><a href="{{ link.relatedentry[0].url }}" >
                           {% else %}
                                   <li><a href="{{ link.customurl }}">
                           {% endif %}
