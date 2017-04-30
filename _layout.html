@@ -71,7 +71,7 @@
                   {% set menu = craft.entries.section('menu').order('displayOrder') %}
                   {% nav link in menu %}
                           {% if link.relatedentry|length %}
-                                  <li {% if link.title == title %}class="open"{% endif %}><a href="{{ link.relatedentry[0].url }}" >
+                                  <li {% if title is defined and link.title == title %}class="open"{% endif %}><a href="{{ link.relatedentry[0].url }}" >
                           {% else %}
                                   <li><a href="{{ link.customurl }}">
                           {% endif %}
