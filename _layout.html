@@ -6,8 +6,10 @@
   {% embed "_header.html" %}
   {% endembed %}
   {#figure this out later#}
-  {%if entry.number > 0 %}
-    {% set serialnumber = entry.number %}
+  {% if entry is defined %}
+    {% if entry.number > 0 %}
+      {% set serialnumber = entry.number %}
+    {% endif %}
   {% else %}
     {% set serialnumber = 0 %}
   {% endif %}
