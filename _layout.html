@@ -6,6 +6,11 @@
   {% embed "_header.html" %}
   {% endembed %}
   {#figure this out later#}
+  {%if entry.number > 0 %}
+    {% set serialnumber = entry.number %}
+  {% else %}
+    {% set serialnumber = 0 %}
+  {% endif %}
   {% if title == 'Words in Situ' %}
     {% set projectname = 'Words <span class="small">in</span> Situ' %}
     {% set tagline = '(another) side project ' %}
@@ -43,7 +48,7 @@
               <div class="logo">
                 <h1 class="logo__name">
                   <a class="logo__name" href="/index.php">{{ projectname|parseRefs }}
-                    </a>{%if entry.number > 0 %} <span class="serial">number {{ entry.number }}</span>{% endif %}</h1>
+                  </a>{%if serialnumber > 0 %} <span class="serial">number {{ serialnumber }}</span>{% endif %}</h1>
                 <h2 class="logo__tagline"><span >{{tagline}}{{meta.tagline}}</span></h2>
               </div>
             </div>
