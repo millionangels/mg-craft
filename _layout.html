@@ -13,7 +13,7 @@
     {% endif %}
   {% endif %}
 
-  {% if title == 'Words in Situ' %}
+  {% if title is defined and title == 'Words in Situ' %}
     {% set projectname = 'Words <span class="small">in</span> Situ' %}
     {% set tagline = '(another) side project ' %}
   {% else %}
