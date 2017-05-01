@@ -10,7 +10,7 @@
   <section>
     <div class="centered-content">
       <div class="grid">
-        <div class="grid__col--lg-4 grid__col--sm-12">
+        <div class="grid__col--lg-4 grid__col--md-4 grid__col--sm-12">
           <div class="pullquote">{{ entry.title }}</div>
           <div>{{ entry.summary }}
           </div>
@@ -23,7 +23,7 @@
             </ul>
           </div>
         </div>
-        <div class="grid__col--lg-8 grid__col--sm-12 borderleft">
+        <div class="grid__col--lg-8 grid__col--md-8 grid__col--sm-12 borderleft">
           <section id="postfeed"><!-- post feed-->
             <div class="centered-content">
               {% for entry in craft.entries.section('writing').order('number desc').limit(5).find() %}
